@@ -6,8 +6,8 @@ const mysql = require('mysql2')
 
 const port = 3308
 const hostname = 'localhost'
-const db = "nodeDb"
-const tbl = "users"
+const db = "cvp"
+const tbl = "visitor"
 
 app.use(cors())
 

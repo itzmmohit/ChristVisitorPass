@@ -83,12 +83,14 @@
         background-color: white; 
         color: black; 
         border: 2px solid #4CAF50;
+        border-radius: 5px;
     }
       
     .button1:hover {
         background-color: #4CAF50;
         color: white;
         border: 2px solid #4CAF50;
+        border-radius: 5px;
     }
     /* For VISITOR HOME Page */
     .visitor-home{
@@ -97,7 +99,40 @@
         width: 25%;
         margin-left: 35%;
         margin-top: 4%; 
-        
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+    label{
+        width: 100px;
+    }
+    input{
+        width: 200px;
+    }
+    /* For Vehicle Page */
+    .vehicle-home{
+        background-color: whitesmoke;
+        height: 600px;
+        width: 25%;
+        margin-left: 35%;
+        margin-top: 4%; 
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+    /* For Wait Page */
+    .wait-home{
+        background-color: whitesmoke;
+        height: 600px;
+        width: 25%;
+        margin-left: 35%;
+        margin-top: 4%; 
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+    .clockdiv{
+        margin-top: 65%;
+        margin-left: 20%;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 60px;
     }
 }
 
