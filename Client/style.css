@@ -38,7 +38,7 @@
         height: 600px;
         width: 25%;
         margin-left: 35%;
-        margin-top: 4%; 
+        margin-top: 3%; 
     }
     .visitor {
         border: none;
@@ -92,6 +92,10 @@
         border: 2px solid #4CAF50;
         border-radius: 5px;
     }
+    .menu{
+        margin-left: 98%;
+        height: 20px;
+    }
     /* For VISITOR HOME Page */
     .visitor-home{
         background-color: whitesmoke;
@@ -121,8 +125,8 @@
     /* For Wait Page */
     .wait-home{
         background-color: whitesmoke;
-        height: 600px;
-        width: 25%;
+        height: 570px;
+        width: 23%;
         margin-left: 35%;
         margin-top: 4%; 
         padding-top: 2%;
@@ -133,6 +137,16 @@
         margin-left: 20%;
         font-family: 'Courier New', Courier, monospace;
         font-size: 60px;
+    }
+    /* For Guest */
+    .guest-home{
+        background-color: whitesmoke;
+        height: 570px;
+        width: 23%;
+        margin-left: 35%;
+        margin-top: 4%; 
+        padding-top: 2%;
+        padding-left: 2%;
     }
 }
 
