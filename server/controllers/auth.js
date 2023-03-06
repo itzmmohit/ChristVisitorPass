@@ -118,7 +118,7 @@ exports.login = async(req,res) => {
             //bcrypt.compare() compares the given password  with the hashedPassword. (so that we dont have to unhash the pass from db and compare)
             //we use await so that we make sure the operation is finished.
             //we give results[0] because if there is only one email, we will only have one row in our results array (in first index or 0).
-            if(!results || !(await bcrypt.compare(password,results[0].password)) ) //If there are no users with that email || the password from form and db don't equal.
+            if(!results.length  || !(await bcrypt.compare(password,results[0].password))) //If there are no users with that email || the password from form and db don't equal.
             {
                 //status code of 401 is forbidden code for not being able to login properly.
                 res.status(401).render('login', {

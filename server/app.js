@@ -1,5 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
+const exphbs = require("express-handlebars");
 const path = require('path');
 const dotenv = require("dotenv"); //for our .env file
 const cookieParser = require('cookie-parser');
@@ -10,6 +11,7 @@ dotenv.config({path:'./.env'}) //This is to tell the dotenv module where the fil
 
 const app = express();
 
+app.engine('hbs', exphbs.engine( {extname: '.hbs' }));
 app.set('view engine', 'hbs'); //specify nodejs which template engine we are using
 app.set('views', path.join(__dirname, '../client/views'));
 
