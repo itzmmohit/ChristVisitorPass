@@ -1,45 +1,79 @@
-*{
-  margin: 0;
-  padding: 0;
+
+
+.avatar-ctn {
+  background-color: orange;
+  text-align: center;
 }
-nav {
-    background-color: #563d7c;
-    color: #fff;
-    padding: 30px 60px;
-    display: flex; 
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
   
-  nav ul {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+.avatar {
+  width: 65%;
+  border-bottom: 1px solid rgba(0,0,0,0.125);
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
   
-  nav li {
-    list-style: none;
-  }
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
   
-  nav li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 8px;
-  }
-  
-  nav li a:hover {
-    color: yellow;
-    text-decoration: none;
-  }
-  
-  .avatar-ctn {
-    background-color: orange;
-    text-align: center;
-  }
-  
-  .avatar {
-    width: 65%;
-    border-bottom: 1px solid rgba(0,0,0,0.125);
-  }
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+.ccontainer{
+  width: 80%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.profile-pic{
+  width: 40px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 6px;
+  margin-top: 40px;
+}
+
+.profile-box{
+  background: #ff574a;
+  text-align: center;
+  padding: 40px 90px;
+  color: #fff;
+  position: relative;
+  border-radius: 20px;
+}
+
+.profile-bottom{
+  background: #fff;
+  color: #303030;
+  padding: 60px 0;
+  margin-right: -90px;
+  margin-left: -90px;
+  margin-bottom: -40px;
+  border-radius: 20px;
+  margin-top: -10px;
+  border: 1px solid #cdcdcd;
+}
+
+
+.profile-bottom h3{
+  font-size: 22px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+
+.profile-bottom button{
+  background: #fff;
+  color: #999;
+  border: none;
+  outline: none;
+  box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
+  padding: 15px 60px;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-bottom: -50px;
+  font-weight: 600;
+  font-size: 16px;
+}

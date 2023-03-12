@@ -5,7 +5,6 @@ const router = express.Router();
 //Use another file as a module as shown below
 const authController = require('../controllers/auth'); //../ means go one level up, then go to controllers folder and auth.js.
 
-
 //change the below urls of router.get to /admin/given_value later
 //we submitted data by post, so we use .post
 //we will create a controller that will deal with the data of the form

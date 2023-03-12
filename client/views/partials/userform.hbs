@@ -1,0 +1,46 @@
+<div class="col-6">
+    <div class="form-group mb-3">
+        <label for="floatingInput1">Name</label>
+        <input type="text" class="form-control" id="floatingInput1" placeholder="Name" name="vname"
+            value="{{this.name}}" required>
+    </div>
+</div>
+
+<div class="col-6">
+    <div class="form-group mb-3">
+        <label for="floatingInput2">Phone</label>
+        <input type="text" class="form-control" id="floatingInput2" placeholder="Phone" name="vphone"
+            value="{{this.phone}}" required>
+    </div>
+</div>
+
+<div class="col-12">
+    <div class="form-group mb-3">
+        <label for="floatingInput3">Email</label>
+        <input type="email" class="form-control" id="floatingInput3" placeholder="Email" name="vemail"
+            value="{{this.email}}" required>
+    </div>
+</div>
+
+<div class="col-6">
+    <div class="form-group mb-3">
+        <label for="floatingInput4">Purpose</label>
+        <input type="text" class="form-control" id="floatingInput4" placeholder="Purpose" name="vpurpose"
+            value="{{this.purpose}}" required>
+    </div>
+</div>
+
+<div class="col-6">
+    <div class="form-group mb-3">
+        <label for="dropDown">Status</label>
+        <select class="form-control" id="dropDown" name="vstatus">
+            <option value="Pending" {{#if (eq this.status "Pending")}}selected{{/if}}>Pending</option>
+      <option value="Approved" {{#if (eq this.status "Approved")}}selected{{/if}}>Approved</option>
+      <option value="Rejected" {{#if (eq this.status "Rejected")}}selected{{/if}}>Rejected</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-12 d-grid mt-4">
+    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+</div>

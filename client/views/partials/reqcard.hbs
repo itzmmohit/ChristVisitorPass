@@ -1,0 +1,13 @@
+
+
+<div class="card bg-light mb-3">
+  <h5 class="card-header">{{this.name}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{this.purpose}}</h5>
+    <p class="card-text">Phone:&nbsp;{{this.phone}}</p>
+    <p class="card-text">Email:&nbsp;{{this.email}}</p>
+    <p class="card-text">Time:&nbsp;{{this.checkInTime}}</p>
+    <a href="/admin/approvevisitor/{{this.id}}" class="btn btn-success btn-block">Approve</a>
+    <a href="/admin/rejectvisitor/{{this.id}}" class="btn btn-danger btn-block">Reject</a>
+  </div>
+</div>

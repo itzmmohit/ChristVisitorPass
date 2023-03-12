@@ -25,7 +25,7 @@ db.connect((error) => { //we give a parameter called error, so that if an error 
         console.log(error)
     }
     else{
-        console.log("MySQL Connected...")
+        console.log("MySQL (AC) Connected...")
     }
 })
 
@@ -33,7 +33,7 @@ db.connect((error) => { //we give a parameter called error, so that if an error 
 exports.register = (req, res) => {
     console.log(req.body); //grab data from form and log it in terminal
 
-    const {name, email, password, passwordConfirm} = req.body;
+    const {name, email, password, passwordConfirm, adminCode} = req.body;
     
     /*The above code is same as below 4 lines (destructuring in JS):
     const name = req.body.name; //get the name field of form
@@ -65,6 +65,12 @@ exports.register = (req, res) => {
         {
             return res.render('register', {
                 message: 'Passwords do not match!' //send message value to register page 
+             });
+        }
+        else if(adminCode != "ACCESS321")
+        {
+            return res.render('register', {
+                message: 'Invalid Admin Code!' //send message value to register page 
              });
         }
 
@@ -143,7 +149,7 @@ exports.login = async(req,res) => {
                 }
                 //create cookie
                 res.cookie('userCookie', token, cookieOptions);
-                res.status(200).redirect("/");
+                res.status(200).redirect("/admin");
             }
         });
 
@@ -161,12 +167,12 @@ exports.isLoggedIn = async (req, res, next) => {
         try{
             //since our cookie value is hashed, we need to first decode it to get the user id
             const decoded = await promisify(jwt.verify)(req.cookies.userCookie, process.env.JWT_SECRET);
-            console.log(decoded);
+            //console.log(decoded);
             //the above log will print { id: 8, iat: 1677939111, exp: 1685715111 }
 
             //check if user still exists
             db.query('SELECT * FROM users WHERE id = ?', [decoded.id], (error, results) => {
-                console.log(results);
+                //console.log(results);
 
                 if(!results){
                     return next();//return will stop all upcoming execution and do only that return statement.
@@ -198,7 +204,7 @@ exports.logout = async (req, res) => {
         httpOnly:true
     }) 
 
-    res.status(200).redirect('/');
+    res.status(200).redirect('/admin');
 }
 //Can also give const register = ... instead of exports.register = ... directly. then at end just put,
 //exports.register = register;

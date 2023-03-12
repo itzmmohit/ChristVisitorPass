@@ -2,6 +2,7 @@
 
 const express = require('express');
 const authController = require('../controllers/auth');
+const userController = require('../controllers/userController');
 const router = express.Router();
 
 //change the below urls of router.get to /admin/given_value later
@@ -35,10 +36,45 @@ router.get('/profile', authController.isLoggedIn, (req, res) => {
             user: req.user//pass user details to profile page
         });
     }else{
-        res.redirect('/login');
+        res.redirect('/admin/login');
     }
     
-})
+});
+
+router.get('/visitors', userController.isLoggedIn, userController.view); //there was a res.render('visitors'); here as (req, res)
+
+router.get('/requests', userController.isLoggedIn, userController.viewRequests);
+
+//You can create a get and post request for same url also
+router.post('/visitors', userController.find); 
+
+//Add user static form page from visitor page button
+router.get('/addvisitor', userController.isLoggedIn, (req,res) => {
+    //same code as /profile
+    // if(req.user) 
+    // {
+        res.render('addvisitor');
+    // }
+});
+
+//Edit user static form page from visitor page button inside table
+router.get('/editvisitor/:id', userController.isLoggedIn, userController.editVisitor);
+
+//Send data from add user page form
+router.post('/addvisitor', userController.addVisitor);
+
+//Send data from edit user page form
+router.post('/editvisitor/:id', userController.updateVisitor);
+
+//Get visitors page after Delete data
+router.get('/deletevisitor/:id', userController.isLoggedIn, userController.deleteVisitor);
+
+//Get requests page after status change
+router.get('/approvevisitor/:id', userController.isLoggedIn, userController.approveVisitor);
+router.get('/rejectvisitor/:id', userController.isLoggedIn, userController.rejectVisitor);
+
+//View the visitor's visitor Pass
+router.get('/viewvisitor/:id', userController.isLoggedIn, userController.viewVisitor);
 
 module.exports = router;
 
