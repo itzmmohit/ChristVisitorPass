@@ -1,0 +1,23 @@
+  <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #563d7c;">
+    <a class="navbar-brand" href="/admin">Dashboard Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/admin">Home</a></li>
+      <li class="nav-item active"><a class="nav-link" href="/admin/profile">Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/visitors">Visitors</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/requests">Requests</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+    </ul>
+    </div>
+  </nav>
+
+
+<ul>
+    {{#each users}}
+        <li>{{name}} ({{age}} years old)</li>
+    {{/each}}
+</ul>
