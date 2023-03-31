@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="col-12">
+<div class="col-6">
     <div class="form-group mb-3">
         <label for="floatingInput3">Email</label>
         <input type="email" class="form-control" id="floatingInput3" placeholder="Email" name="vemail"
@@ -29,6 +29,18 @@
             value="{{this.purpose}}" required>
     </div>
 </div>
+
+
+<div class="col-6">
+    <div class="form-group mb-3">
+        <label for="dropDown2">Location</label>
+        <select class="form-control" id="dropDown2" name="vlocation">
+            <option value="Bank" {{#if (eq this.location "Bank")}}selected{{/if}}>Bank</option>
+      <option value="Block I" {{#if (eq this.location "Block I")}}selected{{/if}}>Block I</option>
+        </select>
+    </div>
+</div>
+
 
 <div class="col-6">
     <div class="form-group mb-3">

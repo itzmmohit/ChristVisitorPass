@@ -26,8 +26,9 @@ db.connect((error) => { //we give a parameter called error, so that if an error 
 exports.view = (req, res) => {
     //rows will have the data from table
     //Todays visitors: SELECT * FROM visitors WHERE rowAge = "new"
-    db.query('SELECT * FROM visitors', (err, rows) => {
+    db.query('SELECT * FROM visit', (err, rows) => {
         if (!err) { //NOTE: if not error
+          
           let removedUser = req.query.removed;
           res.render('visitors', { rows, removedUser });
         } else {
@@ -40,7 +41,7 @@ exports.view = (req, res) => {
  //View all visitors
  exports.viewRequests = (req, res) => {
         
-  db.query('SELECT * FROM visitors WHERE status = ?', ['Pending'], (err, rows) => {
+  db.query('SELECT * FROM visit WHERE status = ?', ['Pending'], (err, rows) => {
     if (!err) {
       let statusChange = req.query.schange;
       res.render('requests', { rows, statusChange });
@@ -56,7 +57,7 @@ exports.view = (req, res) => {
 exports.find = (req, res) => {
     let searchTerm = req.body.search; //req.body.search is basically accessing the name="search" form element on submitting. 
     
-    db.query('SELECT * FROM visitors WHERE name LIKE ? OR purpose LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
+    db.query('SELECT * FROM visit WHERE name LIKE ? OR purpose LIKE ? OR status LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
       if (!err) {
         res.render('visitors', { rows });
       } else {
@@ -69,9 +70,9 @@ exports.find = (req, res) => {
 
 // Add new user
 exports.addVisitor = (req, res) => {
-    const { vname, vphone, vemail, vpurpose, vstatus } = req.body;
+    const { vname, vphone, vemail, vpurpose, vlocation, vstatus } = req.body;
 
-    db.query('INSERT INTO visitors SET name = ?, phone = ?, email = ?, purpose = ?, status = ?', [vname, vphone, vemail, vpurpose, vstatus], (err) => {
+    db.query('INSERT INTO visit SET name = ?, phone = ?, email = ?, purpose = ?, location = ?, status = ?', [vname, vphone, vemail, vpurpose, vlocation, vstatus], (err) => {
       if (!err) {
         res.render('addvisitor', { alert: 'Visitor added successfully' });
       } else {
@@ -82,7 +83,7 @@ exports.addVisitor = (req, res) => {
 
 // Edit user (taking id from url)
 exports.editVisitor = (req, res) => {
-  db.query('SELECT * FROM visitors WHERE id = ?', [req.params.id], (err, rows) => {
+  db.query('SELECT * FROM visit WHERE visit_id = ?', [req.params.id], (err, rows) => {
     if (!err) {
       res.render('editvisitor', { rows });
     } else {
@@ -94,12 +95,12 @@ exports.editVisitor = (req, res) => {
 
 // Update Visitor
 exports.updateVisitor = (req, res) => {
-  const { vname, vphone, vemail, vpurpose, vstatus } = req.body;
-
-  db.query('UPDATE visitors SET name = ?, phone = ?, email = ?, purpose = ?, status = ? WHERE id = ?', [vname, vphone, vemail, vpurpose, vstatus, req.params.id], (err) => {
+  const { vname, vphone, vemail, vpurpose, vlocation, vstatus } = req.body;
+  console.log(vname);
+  db.query('UPDATE visit SET name = ?, phone = ?, email = ?, purpose = ?, location = ?, status = ? WHERE visit_id = ?', [vname, vphone, vemail, vpurpose, vlocation, vstatus, req.params.id], (err) => {
 
     if (!err) {
-      db.query('SELECT * FROM visitors WHERE id = ?', [req.params.id], (err, rows) => {
+      db.query('SELECT * FROM visit WHERE visit_id = ?', [req.params.id], (err, rows) => {
         if (!err) {
           res.render('editvisitor', { rows, alert: `${vname} has been updated.` });
         } else {
@@ -115,7 +116,7 @@ exports.updateVisitor = (req, res) => {
 
 // Delete Visitor
 exports.deleteVisitor = (req, res) => {
-  db.query('DELETE FROM visitors WHERE id = ?', [req.params.id], (err) => {
+  db.query('DELETE FROM visit WHERE visit_id = ?', [req.params.id], (err) => {
     if (!err) {
       let removedUser = encodeURIComponent('Visitor successfully removed.'); //https://www.freecodecamp.org/news/javascript-url-encode-example-how-to-use-encodeuricomponent-and-encodeuri/
       res.redirect('/admin/visitors/?removed=' + removedUser); //This shows that you can pass data while in redirect as well through encoding in url
@@ -128,7 +129,7 @@ exports.deleteVisitor = (req, res) => {
 
 // Approve Visitor
 exports.approveVisitor = (req, res) => {
-  db.query('UPDATE visitors SET status = ? WHERE id = ?', ['Approved',req.params.id], (err) => {
+  db.query('UPDATE visit SET status = ? WHERE visit_id = ?', ['Approved',req.params.id], (err) => {
     if (!err) {
       let approvedUser = encodeURIComponent('Approved'); //https://www.freecodecamp.org/news/javascript-url-encode-example-how-to-use-encodeuricomponent-and-encodeuri/
       res.redirect('/admin/requests/?schange=' + approvedUser); //This shows that you can pass data while in redirect as well through encoding in url
@@ -142,7 +143,7 @@ exports.approveVisitor = (req, res) => {
 
 // Reject Visitor
 exports.rejectVisitor = (req, res) => {
-  db.query('UPDATE visitors SET status = ? WHERE id = ?', ['Rejected',req.params.id], (err) => {
+  db.query('UPDATE visit SET status = ? WHERE visit_id = ?', ['Rejected',req.params.id], (err) => {
     if (!err) {
       let rejectedUser = encodeURIComponent('Rejected'); //https://www.freecodecamp.org/news/javascript-url-encode-example-how-to-use-encodeuricomponent-and-encodeuri/
       res.redirect('/admin/requests/?schange=' + rejectedUser); //This shows that you can pass data while in redirect as well through encoding in url
@@ -155,7 +156,7 @@ exports.rejectVisitor = (req, res) => {
 
 exports.viewVisitor = (req, res) => {
 
-  db.query('SELECT * FROM visitors WHERE id = ?', [req.params.id], (err, rows) => {
+  db.query('SELECT * FROM visit WHERE visit_id = ?', [req.params.id], (err, rows) => {
     if (!err) {
       res.render('viewvisitor', { rows });
     } else {

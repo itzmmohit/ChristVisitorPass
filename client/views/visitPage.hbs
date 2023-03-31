@@ -1,0 +1,24 @@
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="/logoapp.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        VisitorPass
+    </a>
+</nav>
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p class="lead">Enter your Details</p>
+</div>
+
+<div class="container-fluid pb-5">
+    <form method="POST" action="/visit/nvisitor" enctype="multipart/form-data">
+        {{> visitorform}} {{!-- Partial --}}
+    </form>
+</div>
+
+{{!--
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script> --}}

@@ -31,7 +31,7 @@ db.connect((error) => { //we give a parameter called error, so that if an error 
 
 
 exports.register = (req, res) => {
-    console.log(req.body); //grab data from form and log it in terminal
+    //console.log(req.body); //grab data from form and log it in terminal
 
     const {name, email, password, passwordConfirm, adminCode} = req.body;
     
@@ -78,7 +78,7 @@ exports.register = (req, res) => {
 
         //hash the password 8 times. 
         let hashedPassword = await bcrypt.hash(password, 8);//we can use await only for async fns.
-        console.log(hashedPassword);
+        //console.log(hashedPassword);
         
         //The below query is similiar to: INSERT INTO users SET nameAttributeInTable=nameValueFromForm, and so on...
         //Then we run a callback fn (a function done after a function).
@@ -89,7 +89,7 @@ exports.register = (req, res) => {
             }
             else
             {
-                console.log(results);
+                //console.log(results);
                 return res.render('register', {
                     message: 'User Registered!' //send message value to register page 
                  });
@@ -120,7 +120,7 @@ exports.login = async(req,res) => {
 
         //after selecting the data, run the async fn
         db.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
-            console.log(results)
+            //console.log(results)
             //bcrypt.compare() compares the given password  with the hashedPassword. (so that we dont have to unhash the pass from db and compare)
             //we use await so that we make sure the operation is finished.
             //we give results[0] because if there is only one email, we will only have one row in our results array (in first index or 0).
@@ -141,7 +141,7 @@ exports.login = async(req,res) => {
                     expiresIn: process.env.JWT_EXPIRES_IN //specify that token(not cookie) should expire in 90 days
                 })
 
-                console.log(" The token: " + token)
+                //console.log(" The token: " + token)
 
                 const cookieOptions = {
                     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),//converting to milliseconds)

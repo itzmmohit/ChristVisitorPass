@@ -1,4 +1,4 @@
-//this file is for creating the routes for all the pages to be used.
+//this file is for creating the routes for all the admin pages to be used.
 
 const express = require('express');
 const authController = require('../controllers/auth');
