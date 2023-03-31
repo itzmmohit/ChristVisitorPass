@@ -202,3 +202,28 @@ exports.isLoggedIn = async (req, res, next) => {
     //we need to continue our execution onto next function in the /profile routing in pages.js (i.e. the (req, res) function)
     //if we dont call next(), the fn after executing just stops execution to any new place.
 }
+
+//Dashboard Module
+
+//For counting number of Approved, Rejected and Pending Visitors
+exports.dash = (req, res) => {
+  db.query('SELECT labels.label_name, COALESCE(visit_counts.visitor_count, 0) AS visitor_count FROM (SELECT "ALUMNI" AS label_name UNION SELECT "ADMISSION" AS label_name UNION SELECT "BANK" AS label_name UNION SELECT "FEST" AS label_name UNION SELECT "GUEST" AS label_name UNION SELECT "MEET" AS label_name UNION SELECT "OTHERS" AS label_name) AS labels LEFT JOIN (SELECT UPPER(purpose) AS purpose_name, COUNT(*) AS visitor_count FROM visit WHERE status = "Approved" GROUP BY UPPER(purpose)) AS visit_counts ON labels.label_name = visit_counts.purpose_name ORDER BY labels.label_name', (err, rows) => {
+    if (!err) {
+      db.query('SELECT labels.label_name, COALESCE(visit_counts.visitor_count, 0) AS visitor_count FROM (SELECT "ALUMNI" AS label_name UNION SELECT "ADMISSION" AS label_name UNION SELECT "BANK" AS label_name UNION SELECT "FEST" AS label_name UNION SELECT "GUEST" AS label_name UNION SELECT "MEET" AS label_name UNION SELECT "OTHERS" AS label_name) AS labels LEFT JOIN (SELECT UPPER(purpose) AS purpose_name, COUNT(*) AS visitor_count FROM visit WHERE status = "Pending" GROUP BY UPPER(purpose)) AS visit_counts ON labels.label_name = visit_counts.purpose_name ORDER BY labels.label_name', (err, rows1) => {
+        if (!err) {
+          db.query('SELECT labels.label_name, COALESCE(visit_counts.visitor_count, 0) AS visitor_count FROM (SELECT "ALUMNI" AS label_name UNION SELECT "ADMISSION" AS label_name UNION SELECT "BANK" AS label_name UNION SELECT "FEST" AS label_name UNION SELECT "GUEST" AS label_name UNION SELECT "MEET" AS label_name UNION SELECT "OTHERS" AS label_name) AS labels LEFT JOIN (SELECT UPPER(purpose) AS purpose_name, COUNT(*) AS visitor_count FROM visit WHERE status = "Rejected" GROUP BY UPPER(purpose)) AS visit_counts ON labels.label_name = visit_counts.purpose_name ORDER BY labels.label_name', (err, rows2) => {
+            if (!err) {
+              res.render('dashboard', { rows,rows1,rows2 });
+            } else {
+              console.log(err);
+            }
+          });
+        } else {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log(err);
+    }
+  });
+}

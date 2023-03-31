@@ -1,0 +1,132 @@
+  <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #563d7c;">
+    <a class="navbar-brand" href="/admin">Admin Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/admin">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/profile">Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/visitors">Visitors</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/requests">Requests</a></li>
+      <li class="nav-item active"><a class="nav-link" href="/admin/dashboard">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+    </ul>
+    </div>
+  </nav>
+
+<div class="mt-4">
+  <h3 style="text-align: center;">Analytics</h3>
+  <div class="mt-4">
+    
+  </div>
+  <div class="container">
+    <div class="row">
+      <div style="text-align: center;" class="col-lg">
+        <canvas id="myChart" ></canvas><br>
+        <h6>Approved Requests</h6>
+      </div>
+      <div style="text-align: center;" class="col-lg">
+        <canvas id="myChart1" ></canvas><br>
+        <h6>Pending Requests</h6>
+      </div>
+      <div style="text-align: center;" class="col-lg">
+        <canvas id="myChart2"></canvas><br>
+        <h6>Rejected Requests</h6>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>  // mychart--1
+        var rowsArray = {{{json rows}}};
+        var data=[];
+        var labels=[];
+        for (let i = 0; i < rowsArray.length; i++) {
+            labels.push(rowsArray[i].label_name)
+        }
+        for (let i = 0; i < rowsArray.length; i++) {
+            data.push(rowsArray[i].visitor_count)
+        }
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Visitors',
+              data: data,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+  </script>
+
+  <script> // mychart--2
+        var rowsArray = {{{json rows1}}};
+        var data=[];
+        var labels=[];
+        for (let i = 0; i < rowsArray.length; i++) {
+            labels.push(rowsArray[i].label_name)
+        }
+        for (let i = 0; i < rowsArray.length; i++) {
+            data.push(rowsArray[i].visitor_count)
+        }
+        const ctx1 = document.getElementById('myChart1');
+        new Chart(ctx1, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Visitors',
+              data: data,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+  </script>
+
+  <script> // mychart--3
+        var rowsArray = {{{json rows2}}};
+        var data=[];
+        var labels=[];
+        for (let i = 0; i < rowsArray.length; i++) {
+            labels.push(rowsArray[i].label_name)
+        }
+        for (let i = 0; i < rowsArray.length; i++) {
+            data.push(rowsArray[i].visitor_count)
+        }
+        const ctx2 = document.getElementById('myChart2');
+        new Chart(ctx2, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Visitors',
+              data: data,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+  </script>
+
