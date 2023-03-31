@@ -19,6 +19,9 @@ const handlebars = exphbs.create({
     helpers: {
       eq: function (a, b) {
         return a === b;
+      },
+      json : function(context){
+        return JSON.stringify(context);
       }
     }
   });
@@ -75,3 +78,4 @@ app.listen(port, () => console.log(`Server Started: http://localhost:${port}/adm
 //         console.log("MySQL Connected...")
 //     }
 // })
+

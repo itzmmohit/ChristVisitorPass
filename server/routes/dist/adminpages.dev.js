@@ -23,19 +23,7 @@ router.get('/', authController.isLoggedIn, function (req, res) {
 router.get('/register', function (req, res) {
   res.render('register'); //this will render register.hbs file when we go to /register url
 });
-router.get('/dashboard', userController.isLoggedIn, function (req, res) {
-  var data = {
-    users: [{
-      name: 'John',
-      age: 30
-    }, {
-      name: 'Jane',
-      age: 25
-    }, {
-      name: 'Bob',
-      age: 40
-    }]
-  };
+router.get('/dashboard', userController.isLoggedIn, userController.dash, function (req, res) {
   res.render('dashboard');
 });
 router.get('/login', function (req, res) {

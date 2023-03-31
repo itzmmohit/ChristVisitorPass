@@ -22,14 +22,7 @@ router.get('/register', (req,res) => {
     res.render('register'); //this will render register.hbs file when we go to /register url
 });
 
-router.get('/dashboard',userController.isLoggedIn,(req,res)=>{
-    const data = {
-        users: [
-          { name: 'John', age: 30 },
-          { name: 'Jane', age: 25 },
-          { name: 'Bob', age: 40 }
-        ]
-      };
+router.get('/dashboard',userController.isLoggedIn,userController.dash,(req,res)=>{
     res.render('dashboard');
 })
 
