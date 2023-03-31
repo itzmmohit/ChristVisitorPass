@@ -9,6 +9,7 @@
         <li class="nav-item"><a class="nav-link" href="/admin/profile">Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin/visitors">Visitors</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin/requests">Requests</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
     </ul>
     </div>
@@ -30,7 +31,7 @@
 
 {{#each rows}}
 <div class="container pt-5 pb-5">
-<form class="row g-3" method="POST" action="/admin/editvisitor/{{this.id}}"> 
+<form class="row g-3" method="POST" action="/admin/editvisitor/{{this.visit_id}}"> 
   {{> userform}}
 </form>
 </div>

@@ -1,0 +1,60 @@
+<div class="form-group mb-3">
+    <label for="floatingInput1">Name</label>
+    <input type="text" class="form-control" id="floatingInput1" placeholder="Name" name="vname" required>
+</div>
+
+<div class="form-group mb-3">
+    <label for="floatingInput2">Phone</label>
+    <input type="text" class="form-control" id="floatingInput2" placeholder="Phone" name="vphone" required>
+</div>
+
+<div class="form-group mb-3">
+    <label for="floatingInput3">Email</label>
+    <input type="email" class="form-control" id="floatingInput3" placeholder="Email" name="vemail" required>
+</div>
+
+<div class="form-group mb-3">
+    <label for="floatingInput4">Purpose</label>
+    <input type="text" class="form-control" id="floatingInput4" placeholder="Purpose" name="vpurpose" required>
+</div>
+
+
+<div class="form-group mb-3">
+    <label for="dropDown">Location</label>
+    <select class="form-control" id="dropDown" name="vlocation">
+        <option value="Bank" selected>Bank</option>
+        <option value="Block I">Block I</option>
+        <option value="Block II">Block II</option>
+        <option value="Block III">Block III</option>
+    </select>
+</div>
+
+<div class="form-group mb-3">
+    <label for="capture">Photo</label>
+    <input type="file" accept="image/*" capture="user" class="form-control-file" id="capture" name="visitorImage" required>
+</div>
+
+<div class="mb-3" id="imgDiv" style="display: none;">
+    <img class="img-fluid mb-3" src="" id="img" alt="from phone" />
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">Submit</button>
+
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', (ev) => {
+        let input = document.getElementById('capture');
+        let x = document.getElementById('imgDiv');
+
+        input.addEventListener('change', (ev) => {
+            console.dir(input.files[0]);//gives file info in console
+            if (input.files[0].type.indexOf("image/") > -1) {
+                let img = document.getElementById('img');
+                x.style.display = "block";
+                img.src = window.URL.createObjectURL(input.files[0]);
+            }
+        })
+
+    })
+</script>

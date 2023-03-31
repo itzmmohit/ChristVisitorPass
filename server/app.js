@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const exphbs = require("express-handlebars");
+const fileUpload = require("express-fileupload");
 const path = require('path');
 const dotenv = require("dotenv"); //for our .env file
 const cookieParser = require('cookie-parser');
@@ -13,12 +14,31 @@ dotenv.config({path:'./.env'}) //This is to tell the dotenv module where the fil
 const port = process.env.PORT || 5001;
 const app = express();
 
+//To use the file upload
+app.use(fileUpload());
 
 const handlebars = exphbs.create({
     extname: '.hbs',
     helpers: {
       eq: function (a, b) {
         return a === b;
+      },
+      json: function(obj) {
+        return JSON.stringify(obj);
+      }
+      ,
+      formatDate: function(date){
+        const options = {
+          year: '2-digit',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        };
+        if(date == null)
+          return 'NIL';
+        const formattedDate = new Date(date).toLocaleDateString('en-US', options);
+        return formattedDate.replace(',', '');
       }
     }
   });
@@ -51,7 +71,7 @@ app.use(cookieParser());//clear cookies in browser if localhost not coming up
 //Defining routes
 app.use('/admin', require('./routes/adminpages')); //This means that whenever someone access '/', go to routes/pages.
 app.use('/auth', require('./routes/auth')); //This means that whenever someone access '/auth', go to routes/auth which will have its subroutes.
-
+app.use('/visit', require('./routes/visitorpages'));
 
 app.listen(port, () => console.log(`Server Started: http://localhost:${port}/admin`)); //which port should server listen to.
 
@@ -75,3 +95,6 @@ app.listen(port, () => console.log(`Server Started: http://localhost:${port}/adm
 //         console.log("MySQL Connected...")
 //     }
 // })
+
+//To install a package and add it to package.json after intiall installs
+//Eg: npm i express-fileupload --save

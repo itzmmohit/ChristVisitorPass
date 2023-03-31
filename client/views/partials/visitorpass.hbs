@@ -3,15 +3,22 @@
 
 <div class="ccontainer mt-4">
     <div class="profile-box">
-        <img src="/profile-pic.png" class="profile-pic">
+        {{#if this.profile_image}}
+    <img src="/img_upload/{{this.profile_image}}" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
+    {{else}}
+    <img src="/img_upload/avatar.png" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
+    {{/if}}
         <h3>{{this.name}}</h3>
         <p>{{this.purpose}}</p>
         {{!-- <button type="button">Follow</button> --}}
         <div class="profile-bottom">
-            <p>Id:&nbsp;{{this.id}}</p>
-            <p>Phone:&nbsp;{{this.phone}}</p>
-            <p>Email:&nbsp;{{this.email}}</p>
-            <p>Status:&nbsp;{{this.status}}</p>
+            <p><b>Id:</b>&nbsp;{{this.visit_id}}</p>
+            <p><b>Phone:</b>&nbsp;{{this.phone}}</p>
+            <p><b>Email:</b>&nbsp;{{this.email}}</p>
+            <p><b>Check-In:</b>&nbsp;{{formatDate this.checkIn}}</p>
+            <p><b>Check-Out:</b>&nbsp;{{formatDate this.checkOut}}</p>
+            <p><b>Location:</b>&nbsp;{{this.location}}</p>
+            <p><b>Status:</b>&nbsp;{{this.status}}</p>
         </div>
     </div>
 

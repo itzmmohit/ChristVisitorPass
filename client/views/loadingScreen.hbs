@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<script>
+    const userData = {{{ json rows }}};
+    const userStatus = userData[0].status;
+    const userA = 'Approved';
+    const userR = 'Rejected';
+    if (userStatus == userA) {
+        goToApprove();
+    }
+    if (userStatus == userR) {
+        goToReject();
+    }
+
+    function goToApprove() { 
+        // Get the current URL
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace("Load", "Approve");
+        window.location.href = newUrl;
+    };
+
+    function goToReject() {
+        // Get the current URL
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace("Load", "Reject");
+        window.location.href = newUrl;
+    };
+
+    setTimeout(function(){
+    window.location.reload(1);
+    }, 5000);
+</script>

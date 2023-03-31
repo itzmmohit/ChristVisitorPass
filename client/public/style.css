@@ -27,14 +27,6 @@
   margin: 0 auto;
 }
 
-.profile-pic{
-  width: 40px;
-  border-radius: 50%;
-  background: #fff;
-  padding: 6px;
-  margin-top: 40px;
-}
-
 .profile-box{
   background: #ff574a;
   text-align: center;

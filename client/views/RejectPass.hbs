@@ -1,0 +1,32 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/logoapp.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    VisitorPass
+  </a>
+</nav>
+
+
+<div class="ccontainer mt-4">
+  <div class="profile-box" style="background: #D32626;">
+    {{#each rows}}
+    {{#if this.profile_image}}
+      <img src="/img_upload/{{this.profile_image}}" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
+    {{else}}
+      <img src="/img_upload/avatar.png" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
+    {{/if}}
+    <h3>{{this.name}}</h3>
+    <p>{{this.purpose}}</p>
+    <div class="profile-bottom">
+      <h3>You Are Rejected!</h3>
+      <a class="btn btn-primary" href="/visit/nvisitor" role="button">Fill Form Again!</a>
+      {{!-- <p>Id:&nbsp;{{this.visit_id}}</p>
+      <p>Phone:&nbsp;{{this.phone}}</p>
+      <p>Email:&nbsp;{{this.email}}</p>
+      <p>Check-In:&nbsp;{{formatDate this.checkIn}}</p>
+      <p>Check-Out:&nbsp;{{formatDate this.checkOut}}</p>
+      <p>Location:&nbsp;{{this.location}}</p> --}}
+    </div>
+    {{/each}}
+  </div>
+
+</div>

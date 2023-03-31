@@ -1,4 +1,4 @@
-//this file is for creating the routes for all the pages to be used.
+//this file is for creating the routes for all the admin pages to be used.
 
 const express = require('express');
 const authController = require('../controllers/auth');
@@ -47,6 +47,10 @@ router.get('/requests', userController.isLoggedIn, userController.viewRequests);
 
 //You can create a get and post request for same url also
 router.post('/visitors', userController.find); 
+
+router.get('/dashboard',userController.isLoggedIn,userController.dash,(req,res)=>{
+    res.render('dashboard');
+})
 
 //Add user static form page from visitor page button
 router.get('/addvisitor', userController.isLoggedIn, (req,res) => {
