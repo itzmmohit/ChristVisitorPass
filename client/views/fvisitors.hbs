@@ -1,0 +1,47 @@
+{{! User Management }}
+{{!-- 24 hour old records have class='old' --}}
+{{!--
+https://stackoverflow.com/questions/44253746/how-do-i-delete-rows-of-data-from-mysql-table-automatically-with-24-hours-after
+--}}
+<nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #563d7c;">
+    <a class="navbar-brand" href="/faculty">Faculty Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="/faculty">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/faculty/profile">Profile</a></li>
+        <li class="nav-item active"><a class="nav-link" href="/faculty/visitors">Visitors</a></li>
+       
+        <li class="nav-item"><a class="nav-link" href="/fauth/logout">Logout</a></li>
+    </ul>
+    </div>
+</nav>
+
+
+{{!-- bootstrap container will make all the content center aligned by default --}}
+<div class="container pt-5 pb-5">
+
+    <div class="row">
+        <div class="col-6">
+            <h2>Visitors</h2>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <a href="/faculty/addvisitor" type="button" class="btn btn-primary align-self-center">+ Add Visitor</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function changeBack() {
+  // Get the current URL
+  var currentUrl = window.location.href;
+  // Remove the query parameters by replacing them with an empty string
+  var newUrl = currentUrl.replace(/\?.*$/, "");
+  // Update the URL
+  window.location.href = newUrl;
+};
+
+</script>
