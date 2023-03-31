@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #563d7c;">
+    <a class="navbar-brand" href="/faculty">Faculty Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {{!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/faculty">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/faculty/profile">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/faculty/visitors">Visitors</a></li>
+            
+            <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+        </ul>
+    </div> --}}
+</nav>
+<nav aria-label="breadcrumb" style="margin-top: 0;">
+    <ol class="breadcrumb mt-0 mb-0">
+        <li class="breadcrumb-item"><a class="vis" href="/faculty/visitors">Visitors</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Visitor</li>
+    </ol>
+</nav>
+
+{{#if alert}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{alert}}! Link: http://localhost:5001/visit/nvisitorLoad/?inserted={{rid}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+
+</div>
+{{/if}}
+
+<div class="container pt-5 pb-5">
+    <form class="row g-3" method="POST" action="/faculty/addVisitor">
+        {{> userform}}  {{!-- Partial --}}
+    </form>
+</div>
+
+
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+

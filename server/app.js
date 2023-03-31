@@ -73,6 +73,12 @@ app.use('/admin', require('./routes/adminpages')); //This means that whenever so
 app.use('/auth', require('./routes/auth')); //This means that whenever someone access '/auth', go to routes/auth which will have its subroutes.
 app.use('/visit', require('./routes/visitorpages'));
 
+
+//Defining routes
+app.use('/faculty', require('./routes/facultypages')); //This means that whenever someone access '/', go to routes/pages.
+app.use('/fauth', require('./routes/fauth')); //This means that whenever someone access '/auth', go to routes/auth which will have its subroutes.
+
+
 app.listen(port, () => console.log(`Server Started: http://localhost:${port}/admin`)); //which port should server listen to.
 
 

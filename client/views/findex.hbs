@@ -1,0 +1,41 @@
+
+    {{!-- Create a nav bar --}}
+    {{!-- You can add image also instead of 'faculty Page' --}}
+    {{!-- NOTE: The .ml-auto class automatically aligns elements to the right.  --}}
+    <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #563d7c;">
+    <a class="navbar-brand" href="/faculty">Faculty Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active"><a class="nav-link" href="/faculty">Home</a></li> {{!-- Change below urls to faculty/given_url --}}
+      {{#if user }}
+        <li class="nav-item"><a class="nav-link" href="/faculty/profile">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="/faculty/visitors">Visitors</a></li>
+        
+        <li class="nav-item"><a class="nav-link" href="/fauth/logout">Logout</a></li>
+      {{else}}
+        <li class="nav-item"><a class="nav-link" href="/faculty/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/faculty/register">Register</a></li>
+      {{/if}}
+    </ul>
+    </div>
+  </nav>
+
+ {{!-- bootstrap classes are defined below --}}
+  <div class="container mt-4">
+    <div class="jumbotron text-center">
+      <img src="/CU.jpg" class="img-fluid CU" height="100">
+      <br><br>
+      {{#if user }}
+        <h1 class="display-4">Welcome, {{user.name}}</h1>
+      {{else}}
+        <h1 class="display-4">Welcome, Faculty</h1>
+      {{/if}}
+    </div>
+  </div>
+
+
+
+
