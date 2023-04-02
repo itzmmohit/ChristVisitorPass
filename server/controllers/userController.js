@@ -213,7 +213,21 @@ exports.dash = (req, res) => {
         if (!err) {
           db.query('SELECT labels.label_name, COALESCE(visit_counts.visitor_count, 0) AS visitor_count FROM (SELECT "ALUMNI" AS label_name UNION SELECT "ADMISSION" AS label_name UNION SELECT "BANK" AS label_name UNION SELECT "FEST" AS label_name UNION SELECT "GUEST" AS label_name UNION SELECT "MEET" AS label_name UNION SELECT "OTHERS" AS label_name) AS labels LEFT JOIN (SELECT UPPER(purpose) AS purpose_name, COUNT(*) AS visitor_count FROM visit WHERE status = "Rejected" GROUP BY UPPER(purpose)) AS visit_counts ON labels.label_name = visit_counts.purpose_name ORDER BY labels.label_name', (err, rows2) => {
             if (!err) {
-              res.render('dashboard', { rows,rows1,rows2 });
+              db.query('SELECT status as label_name, COUNT(*) AS visitor_count FROM visit GROUP BY status', (err, rows3) => {
+                if(!err)
+                {
+                  db.query('SELECT location as label_name, COUNT(*) AS visitor_count FROM visit GROUP BY location', (err, rows4) => {
+                    if(!err)
+                    {
+                      res.render('dashboard', { rows,rows1,rows2,rows3,rows4 });
+                    }else {
+                      console.log(err);
+                    }
+                  });
+                }else {
+                  console.log(err);
+                }
+              });
             } else {
               console.log(err);
             }

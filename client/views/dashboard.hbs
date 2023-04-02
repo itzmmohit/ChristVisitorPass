@@ -35,7 +35,18 @@
         <h6>Rejected Requests</h6>
       </div>
     </div>
+    <div class="row">
+      <div style="text-align: center;" class="col-lg">
+        <canvas id="myChart3" ></canvas><br>
+        <h6>All Requests</h6>
+      </div>
+      <div style="text-align: center;" class="col-lg">
+        <canvas id="myChart4" ></canvas><br>
+        <h6>Location</h6>
+      </div>
+    </div>
   </div>
+  
 </div>
   <script>  // mychart--1
         var rowsArray = {{{json rows}}};
@@ -111,6 +122,68 @@
         }
         const ctx2 = document.getElementById('myChart2');
         new Chart(ctx2, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Visitors',
+              data: data,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+  </script>
+
+    <script> // mychart--4
+        var rowsArray = {{{json rows3}}};
+        var data=[];
+        var labels=[];
+        for (let i = 0; i < rowsArray.length; i++) {
+            labels.push(rowsArray[i].label_name)
+        }
+        for (let i = 0; i < rowsArray.length; i++) {
+            data.push(rowsArray[i].visitor_count)
+        }
+        const ctx3 = document.getElementById('myChart3');
+        new Chart(ctx3, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Visitors',
+              data: data,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+  </script>
+
+    <script> // mychart--5
+        var rowsArray = {{{json rows4}}};
+        var data=[];
+        var labels=[];
+        for (let i = 0; i < rowsArray.length; i++) {
+            labels.push(rowsArray[i].label_name)
+        }
+        for (let i = 0; i < rowsArray.length; i++) {
+            data.push(rowsArray[i].visitor_count)
+        }
+        const ctx4 = document.getElementById('myChart4');
+        new Chart(ctx4, {
           type: 'doughnut',
           data: {
             labels: labels,
