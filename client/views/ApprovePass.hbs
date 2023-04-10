@@ -24,6 +24,34 @@
       <p><b>Check-In:</b>&nbsp;{{formatDate this.checkIn}}</p>
       <p><b>Check-Out:</b>&nbsp;{{formatDate this.checkOut}}</p>
       <p><b>Location:</b>&nbsp;{{this.location}}</p>
+
+      <!-- Button to trigger the popup -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Location
+      </button>
+
+      <!-- Popup modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Popup header -->
+            <div class="modal-header">
+              <h4 class="modal-title">{{this.location}}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Popup body -->
+            <div class="modal-body" style="max-height: 100vh;">
+              <img src="/Maps/{{this.location}}.png" alt="{{this.location}}" >
+            </div>
+
+            <!-- Popup footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     {{/each}}
   </div>
