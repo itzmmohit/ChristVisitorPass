@@ -23,7 +23,7 @@
 
 {{#if alert}}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{alert}}! Link: http://localhost:5001/visit/nvisitorLoad/?inserted={{rid}}
+    {{alert}}! <b>Link:</b> http://localhost:5001/visit/nvisitorLoad/?inserted={{rid}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
 
@@ -32,7 +32,7 @@
 
 <div class="container pt-5 pb-5">
     <form class="row g-3" method="POST" action="/faculty/addVisitor">
-        {{> userform}}  {{!-- Partial --}}
+        {{> fuserform}}  {{!-- Partial --}}
     </form>
 </div>
 
