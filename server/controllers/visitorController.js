@@ -96,3 +96,25 @@ exports.checkStatus = (req,res) => {
           }
       });
 };
+
+exports.updateCheckoutTime = (req, res) => {
+  const visitId = req.body.visit_id; // Access visitId from req.body instead of req.params
+  const checkoutTime = new Date(); // Get current time as checkout time
+  db.query('UPDATE visit SET checkOut = ? WHERE visit_id = ?', [checkoutTime, visitId], (err, result) => {
+      if (!err) {
+          // res.send('Checkout time updated successfully');
+          db.query('SELECT * FROM visit WHERE visit_id = ?', [visitId], (err, rows) => {
+            if (!err) {
+              res.render('CheckedOut', { rows });
+            } else {
+                console.log(err);
+              }
+          });
+          
+      } else {
+          console.log(err);
+          res.status(500).send('Error updating checkout time');
+      }
+  });
+};
+
