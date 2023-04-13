@@ -23,6 +23,9 @@ router.post('/nvisitor',visitorController.newVisitor);
 
 router.get('/nvisitorLoad', visitorController.checkStatus);
 
+//for visitor's checkout
+router.post('/checkout', visitorController.updateCheckoutTime);
+
 
 
 
