@@ -78,3 +78,10 @@
   max-height: 100vh;
   max-width: 100%;
 }
+
+.flex-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
