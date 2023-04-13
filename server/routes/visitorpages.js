@@ -26,7 +26,7 @@ router.get('/nvisitorLoad', visitorController.checkStatus);
 //for visitor's checkout
 router.post('/checkout', visitorController.updateCheckoutTime);
 
-
+router.post('/checkoutVehicle', visitorController.updateCheckoutTimeVehicle);
 
 
 router.get('/nvehicle', (req,res) => {

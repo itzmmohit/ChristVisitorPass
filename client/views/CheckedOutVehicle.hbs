@@ -8,7 +8,7 @@
 
 
 <div class="ccontainer mt-4">
-  <div class="profile-box" style="background: #79D70F;">
+  <div class="profile-box" style="background: #cdd70f;">
     {{#each rows}}
     {{#if this.profile_image}}
     <img src="/img_upload/{{this.profile_image}}" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
@@ -26,16 +26,6 @@
       <p><b>People Count:</b>&nbsp;{{this.peopleCount}}</p>
       <p><b>License No:</b>&nbsp;{{this.licenseNo}}</p>
       <p><b>Location:</b>&nbsp;{{this.location}}</p>
-
-      <!-- Button to trigger the popup -->
-      <div>
-          <button type="button" class="btn btn-primary" style="width: 195.29px; height: 54px;" data-toggle="modal" data-target="#myModal">Location</button>
-          <br><br><br>
-          <form action="/visit/checkoutVehicle" method="post">
-            <input type="hidden" name="visit_id" value="{{this.visit_id}}">
-            <button type="submit" class="btn btn-primary" style="width: 195.29px; height: 54px;">Check Out</button>
-          </form>
-      </div>
 
       <!-- Popup modal -->
       <div class="modal" id="myModal">
