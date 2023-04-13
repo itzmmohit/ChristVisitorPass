@@ -1,0 +1,63 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/logoapp.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    VisitorPass
+  </a>
+</nav>
+
+
+
+<div class="ccontainer mt-4">
+  <div class="profile-box" style="background: #79D70F;">
+    {{#each rows}}
+    {{#if this.profile_image}}
+    <img src="/img_upload/{{this.profile_image}}" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
+    {{else}}
+    <img src="/img_upload/avatar.png" class="img-thumbnail rounded-circle mb-2" width="150" height="150">
+    {{/if}}
+    <h3>{{this.name}}</h3>
+    <p>{{this.purpose}}</p>
+    <div class="profile-bottom">
+      <p><b>Id:</b>&nbsp;{{this.visit_id}}</p>
+      <p><b>Phone:</b>&nbsp;{{this.phone}}</p>
+      <p><b>Email:</b>&nbsp;{{this.email}}</p>
+      <p><b>Check-In:</b>&nbsp;{{formatDate this.checkIn}}</p>
+      <p><b>Check-Out:</b>&nbsp;{{formatDate this.checkOut}}</p>
+      <p><b>People Count:</b>&nbsp;{{this.peopleCount}}</p>
+      <p><b>License No:</b>&nbsp;{{this.licenseNo}}</p>
+      <p><b>Location:</b>&nbsp;{{this.location}}</p>
+
+      <!-- Button to trigger the popup -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Location
+      </button>
+
+      <!-- Popup modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Popup header -->
+            <div class="modal-header">
+              <h4 class="modal-title">{{this.location}}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Popup body -->
+            <div class="modal-body" style="max-height: 100vh;">
+              <img src="/Maps/{{this.location}}.png" alt="{{this.location}}" >
+            </div>
+
+            <!-- Popup footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+</div>
+
+{{!-- download image --}}

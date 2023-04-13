@@ -8,50 +8,37 @@
         <li class="nav-item"><a class="nav-link" href="/admin">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin/profile">Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin/visitors">Visitors</a></li>
-        <li class="nav-item active"><a class="nav-link" href="/admin/requests">Requests</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/requests">Requests</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
     </ul>
     </div>
 </nav>
+<nav aria-label="breadcrumb" style="margin-top: 0;">
+    <ol class="breadcrumb mt-0 mb-0">
+        <li class="breadcrumb-item"><a class="vis" href="/admin/visitors">Visitors</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit Visitor</li>
+    </ol>
+</nav>
 
-{{#if (eq statusChange "Approved")}}
-
+{{#if alert}}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    Visitor Approved !
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="changeBack()"><span
+    {{alert}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
 </div>
-
 {{/if}}
 
-{{#if (eq statusChange "Rejected")}}
-
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Visitor Rejected !
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="changeBack()"><span
-            aria-hidden="true">&times;</span></button>
+{{#each rows}}
+<div class="container pt-5 pb-5">
+<form class="row g-3" method="POST" action="/admin/editvehicle/{{this.visit_id}}"> 
+  {{> vehicleformAdmin}}
+</form>
 </div>
-
-{{/if}}
-
-
-<div class="container mt-4">
-    {{#each rows1}}
-    {{>reqcard}}
-    {{/each}}
-    {{#each rows2}}
-    {{>reqcard2}}
-    {{/each}}
-</div>
+{{/each}}
 
 <script>
-function changeBack() {
-  // Get the current URL
-  var currentUrl = window.location.href;
-  // Remove the query parameters by replacing them with an empty string
-  var newUrl = currentUrl.replace(/\?.*$/, "");
-  // Update the URL
-  window.location.href = newUrl;
-};
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 </script>

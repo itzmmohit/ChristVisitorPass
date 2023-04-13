@@ -64,21 +64,34 @@ router.get('/addvisitor', userController.isLoggedIn, (req,res) => {
 //Edit user static form page from visitor page button inside table
 router.get('/editvisitor/:id', userController.isLoggedIn, userController.editVisitor);
 
+//Edit user static form page from visitor page button inside table
+router.get('/editvehicle/:id', userController.isLoggedIn, userController.editVehicle);
+
 //Send data from add user page form
 router.post('/addvisitor', userController.addVisitor);
 
 //Send data from edit user page form
-router.post('/editvisitor/:id', userController.updateVisitor);
+router.post('/editvehicle/:id', userController.updateVehicle);
 
 //Get visitors page after Delete data
 router.get('/deletevisitor/:id', userController.isLoggedIn, userController.deleteVisitor);
+
+//Get visitors page after Delete data
+router.get('/deletevehicle/:id', userController.isLoggedIn, userController.deleteVehicle);
 
 //Get requests page after status change
 router.get('/approvevisitor/:id', userController.isLoggedIn, userController.approveVisitor);
 router.get('/rejectvisitor/:id', userController.isLoggedIn, userController.rejectVisitor);
 
+//Get requests page after status change
+router.get('/approvevehicle/:id', userController.isLoggedIn, userController.approveVehicle);
+router.get('/rejectvehicle/:id', userController.isLoggedIn, userController.rejectVehicle);
+
 //View the visitor's visitor Pass
 router.get('/viewvisitor/:id', userController.isLoggedIn, userController.viewVisitor);
+
+//View the visitor's visitor Pass
+router.get('/viewvehicle/:id', userController.isLoggedIn, userController.viewVehicle);
 
 module.exports = router;
 

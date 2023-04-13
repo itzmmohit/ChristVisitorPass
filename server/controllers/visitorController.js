@@ -96,3 +96,78 @@ exports.checkStatus = (req,res) => {
           }
       });
 };
+
+exports.checkStatusVehicle = (req,res) => {
+  db.query('SELECT * FROM vehicle WHERE visit_id = ?', [req.query.inserted], (err, rows) => {
+      if (!err) {
+        res.render('loadingScreen', { rows });
+      } else {
+          console.log(err);
+        }
+    });
+};
+
+
+exports.approvedVehicle = (req,res) => {
+  db.query('SELECT * FROM vehicle WHERE visit_id = ?', [req.query.inserted], (err, rows) => {
+      if (!err) {
+        res.render('ApprovePassVehicle', { rows });
+      } else {
+          console.log(err);
+        }
+    });
+};
+
+exports.rejectedVehicle = (req,res) => {
+  db.query('SELECT * FROM vehicle WHERE visit_id = ?', [req.query.inserted], (err, rows) => {
+      if (!err) {
+        res.render('RejectPassVehicle', { rows });
+      } else {
+          console.log(err);
+        }
+    });
+};
+
+exports.newVehicle = (req,res) => {
+    
+  let visitorImage;
+  let uploadPath;
+  //req.files.visitorImage?
+  
+  if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+  
+  visitorImage = req.files.visitorImage;
+  //change file name
+  uploadPath = imageDir + visitorImage.name;//change visitorImage.name to change name.
+
+  visitorImage.mv(uploadPath, function (err) {
+      
+      if (err) return res.status(500).send(err);
+
+  //   db.query('UPDATE visit SET profile_image = ? WHERE visit_id ="1034"', [visitorImage.name], (err) => {
+  //     if (!err) {
+  //       res.redirect('/visit/nvisitorLoad');
+  //     } else {
+  //       console.log(err);
+  //     }
+  //   });
+
+  const { vname, vphone, vemail, vpurpose, vlocation, vpcount, vlicense } = req.body;
+
+  db.query('INSERT INTO vehicle SET name = ?, phone = ?, email = ?, purpose = ?, location = ?,  peopleCount = ?,  licenseNo = ?, profile_image = ?', [vname, vphone, vemail, vpurpose, vlocation, vpcount, vlicense, visitorImage.name], (err, result) => {
+    if (!err) {
+      let insertedUser = encodeURIComponent(result.insertId);
+      res.redirect('/visit/nvehicleLoad/?inserted=' + insertedUser);//maybe hash and send the id
+      //res.redirect('/visit/nvisitorApprove/?inserted=' + insertedUser);//maybe hash and send the id
+    } else {
+      console.log(err);
+    }
+  });
+
+  });
+  
+
+};
+

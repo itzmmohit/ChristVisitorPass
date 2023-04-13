@@ -24,4 +24,19 @@ router.post('/nvisitor',visitorController.newVisitor);
 router.get('/nvisitorLoad', visitorController.checkStatus);
 
 
+
+
+router.get('/nvehicle', (req,res) => {
+    res.render('vehiclePage'); 
+});
+
+
+router.get('/nvehicleApprove', visitorController.approvedVehicle);
+
+router.get('/nvehicleReject', visitorController.rejectedVehicle);
+
+router.post('/nvehicle',visitorController.newVehicle);
+
+router.get('/nvehicleLoad', visitorController.checkStatusVehicle);
+
 module.exports = router;
