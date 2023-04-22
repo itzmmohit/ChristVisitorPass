@@ -67,7 +67,7 @@ exports.register = (req, res) => {
                 message: 'Passwords do not match!' //send message value to register page 
              });
         }
-        else if(adminCode != "ACCESS321")
+        else if(adminCode != "ACCESS_CODE")
         {
             return res.render('register', {
                 message: 'Invalid Admin Code!' //send message value to register page 
