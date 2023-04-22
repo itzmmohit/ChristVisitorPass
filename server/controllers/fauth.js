@@ -67,7 +67,7 @@ exports.register = (req, res) => {
                 message: 'Passwords do not match!' //send message value to register page 
              });
         }
-        else if(facultyCode != "ACCESS465")
+        else if(facultyCode != "ACCESS_CODE")
         {
             return res.render('fregister', {
                 message: 'Invalid Faculty Code!' //send message value to register page 
